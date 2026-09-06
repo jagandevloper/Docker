@@ -41,7 +41,7 @@ jobs:
           key: ${{ secrets.KEY }}
           port: 22
           script: |
-           docker pull ${{env.container}}
+           docker pull jagandevloper/calculator:latest
 
 
 
