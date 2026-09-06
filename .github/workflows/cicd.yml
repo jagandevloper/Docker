@@ -41,7 +41,10 @@ jobs:
           key: ${{ secrets.KEY }}
           port: 22
           script: |
+           docker rmi ${{env.container}}
            docker pull ${{env.container}}
+           docker stop ${{env.container}}
+           docker rm calci
            docker run -d -p 500:5000 --name calci ${{env.container}}
 
 
