@@ -1,0 +1,32 @@
+name: cicd pipeline building
+
+on: 
+  push:
+
+env:
+  container: jagandevloper/calculator
+     
+
+jobs: 
+  continuous integration:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: dowloading code
+        uses: actions/checkout@v7
+
+      - name: listing files
+        run: ls
+
+      - name: coversion of image
+        run: docker build -t $container
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: image pushing
+        run: docker push $container
+
+
