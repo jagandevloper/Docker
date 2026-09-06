@@ -30,7 +30,8 @@ jobs:
         run: docker push $container
   
   continuous-deployment:
-    runs-on: ubunu-latest
+    needs: continuous-integration
+    runs-on: ubuntu-latest
     steps:
       - name: Execute remote SSH commands using SSH key
         uses: appleboy/ssh-action@v1
