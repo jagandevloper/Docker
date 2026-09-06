@@ -36,7 +36,7 @@ jobs:
       - name: Execute remote SSH commands using SSH key
         uses: appleboy/ssh-action@v1
         with:
-          host: ${{ secrets.HOST }}
+          host: ${{ vars.HOST }}
           username: ec2-user
           key: ${{ secrets.KEY }}
           port: 22
