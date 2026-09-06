@@ -28,5 +28,19 @@ jobs:
 
       - name: image pushing
         run: docker push $container
+  
+  continuous-deployment:
+    runs-on: ubunu-latest
+    steps:
+      - name: Execute remote SSH commands using SSH key
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ec2
+          key: ${{ secrets.KEY }}
+          port: 22
+          script: |
+           docker pull ${{env.container}}
+
 
 
